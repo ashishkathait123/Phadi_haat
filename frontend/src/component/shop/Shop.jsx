@@ -59,7 +59,7 @@ function Shop() {
           </Link>
         )}
       </div>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center shop1">
         {filteredShops.map((shop) => (
           <ShopCard
             key={shop._id}

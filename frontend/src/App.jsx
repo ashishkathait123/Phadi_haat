@@ -10,7 +10,10 @@ import ItemForm from './component/insert/ItemForm';
 import ShopForm from './component/insert/ShopForm';
 import About from './component/about/About';
 import Navbar from './component/navbar/Navbar';
+import ProductPage from "./shop_1/ProductPage";
 function App() {
+ 
+
   return (
     <>
       <BrowserRouter>
@@ -25,10 +28,14 @@ function App() {
         <Route path='/itemform' element= {<ItemForm />} />
         <Route path='/shopForm' element= {<ShopForm />} />
         <Route path='/about' element= {<About />} />    
+        <Route path='/product' element= {<ProductPage />} />    
       </Routes>
       </BrowserRouter>
       
-      
+      {/* <div>
+    <ProductPage/>
+    
+   </div> */}
     </>
   )
 }

@@ -65,6 +65,14 @@ const Navbar = () => {
                 <span>Shop</span>
               </Link>
             </div>
+
+            <div>
+              <Link to={"/product"}>
+                <FaShop />
+                <span>Product</span>
+              </Link>
+            </div>
+
             <div>
               <Link to={"/profile"}>
                 <CgProfile className=" size-7" />
@@ -83,6 +91,10 @@ const Navbar = () => {
                 Logout
               </button>
             </div>
+
+
+
+            
           </>
         ) : (
           <>
