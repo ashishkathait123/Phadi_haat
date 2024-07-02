@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 // import ProductImages from './ProductImages';
 // import ProductMain from './ProductMain';
 import ProductDetails from './ProductDetails';

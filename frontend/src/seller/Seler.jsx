@@ -6,8 +6,8 @@ import starImg from "../assets/Star 1.png";
 import arrowImg from "../assets/Arrow 1.png";
 import productImg from "../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (13).png";
 import productImg2 from "../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (11).png"
-import productImg3 from "../assets/bourbon"
-import productImg4 from "../assets/oil"
+import productImg3 from "../assets/bourbon.png"
+import productImg4 from "../assets/oil.png"
 import first_img from "../assets/downloasdd.jpg";
 import Inventory_card from "./Inventory_card";
 
