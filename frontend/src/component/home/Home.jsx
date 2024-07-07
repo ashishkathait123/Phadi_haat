@@ -22,9 +22,9 @@ import Img8 from "../../assets/tv.png";
 import Img9 from "../../assets/dabba.png";
 import Img10 from "../../assets/dasta.png";
 import Img11 from "../../assets/th (12) 1.png"
-import img12 from "/hero.png"
-import img23 from "/sitem1.png"
-import Footer from "../Footer";
+// import img12 from "../../assets/"
+import img23 from "../../assets/Star 1.png"
+import Footer from "../Footer/Footer";
 // import background from "./Background.png"
 
 

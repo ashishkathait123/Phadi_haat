@@ -11,6 +11,8 @@ import ShopForm from './component/insert/ShopForm';
 import About from './component/about/About';
 import Navbar from './component/navbar/Navbar';
 import ProductPage from "./shop_1/ProductPage";
+import SellerRegister from './component/Registation/SellerRegister';
+import DriverRegister from './component/Registation/DriverRegister';
 function App() {
  
 
@@ -29,6 +31,8 @@ function App() {
         <Route path='/shopForm' element= {<ShopForm />} />
         <Route path='/about' element= {<About />} />    
         <Route path='/product' element= {<ProductPage />} />    
+        <Route path='/Registation/Seller' element=   {<SellerRegister />}  />    
+        <Route path='/Registation/Driver' element=   {<DriverRegister />}  />    
       </Routes>
       </BrowserRouter>
       
