@@ -31,8 +31,8 @@ function App() {
         <Route path='/shopForm' element= {<ShopForm />} />
         <Route path='/about' element= {<About />} />    
         <Route path='/product' element= {<ProductPage />} />    
-        <Route path='/Registation/Seller' element=   {<SellerRegister />}  />    
-        <Route path='/Registation/Driver' element=   {<DriverRegister />}  />    
+        <Route path='/registation/Seller' element=   {<SellerRegister />}  />    
+        <Route path='/registation/Driver' element=   {<DriverRegister />}  />    
       </Routes>
       </BrowserRouter>
       

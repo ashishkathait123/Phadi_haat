@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FcAbout } from "react-icons/fc";
@@ -65,14 +64,12 @@ const Navbar = () => {
                 <span>Shop</span>
               </Link>
             </div>
-
             <div>
               <Link to={"/product"}>
                 <FaShop />
                 <span>Product</span>
               </Link>
             </div>
-
             <div>
               <Link to={"/profile"}>
                 <CgProfile className=" size-7" />
@@ -91,10 +88,6 @@ const Navbar = () => {
                 Logout
               </button>
             </div>
-
-
-
-            
           </>
         ) : (
           <>

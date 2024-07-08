@@ -1,5 +1,5 @@
-import logo from "../assets/25e874b07f064263ab53a757338e8522-removebg-preview 1.png";
-import houseIcon from "../assets/transparent-house-icon-5 1.png";
+// import logo from "../assets/25e874b07f064263ab53a757338e8522-removebg-preview 1.png";
+// import houseIcon from "../assets/transparent-house-icon-5 1.png";
 import profileImg from "../assets/Ellipse 2.png";
 import shopImg from "../assets/Rectangle 9.png";
 import starImg from "../assets/Star 1.png";
@@ -83,7 +83,6 @@ function Seller() {
               type="text"
               placeholder="Search..."
               className="w-full px-4 py-2 text-gray-700 rounded-l-full focus:outline-none"
-              placeholder="Search..."
             />
             <button
               type="submit"

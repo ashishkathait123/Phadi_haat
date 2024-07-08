@@ -1,9 +1,9 @@
 import React from 'react';
 import CarouselCard from '../card/CarouselCard';
 import heroImg from "../../assets/th (12) 1.png"; // Adjust the import path as per your file structure
-// import footer from "/footer1.png"
-// import imga1 from "/imga1.png"
-// import imga2 from "/imga2.png"
+import footer from "../../assets/25e874b07f064263ab53a757338e8522-removebg-preview 1.png"; 
+import imga1 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (7).png";
+import imga2 from "../../assets/8badab49-5be9-4547-bd2a-d36244b0f97c.png (13).png";
 const Carousel = () => {
   return (
     <div className="bg-[url('/hero.png')] flex flex-col items-center justify-center h-[80vh] bg-cover bg-center p-4 mt-20">
