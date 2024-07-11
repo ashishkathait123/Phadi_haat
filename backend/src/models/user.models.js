@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     enum: ["buyer", "seller", "taxi driver"],
   },
-  isFirstTime: { type: Boolean, default: true } // Added isFirstTime field
+  isFirstTime: { type: Boolean, default: true }, // Added isFirstTime field
 });
 
 const User = mongoose.model("User", userSchema);

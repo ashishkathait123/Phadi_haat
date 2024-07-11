@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 function Login() {
+
+    const { state, dispatch} = useContext(UserContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -24,6 +28,7 @@ function Login() {
                 setUserType(data.type);
                 setIsFirstTime(data.isFirstTime); // Assuming backend sends this flag
                 setMessage('Login successful');
+                dispatch({ type: 'USER', payload:true });
                 setRedirect(true);
             } else {
                 setMessage('Token or type not found in response');
@@ -51,7 +56,7 @@ function Login() {
                 }
             } else if (userType === 'taxi driver') {
                 if (isFirstTime) {
-                    navigate('/registration/Driver');
+                    navigate('/registration/driver');
                 } else {
                     navigate('/driver-profile');
                 }
