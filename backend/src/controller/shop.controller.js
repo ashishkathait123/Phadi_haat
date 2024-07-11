@@ -1,4 +1,4 @@
-import Shop from '../models/shop.js';  // Corrected import to use Shop model
+import Shop from '../models/shop.models.js';  // Corrected import to use Shop model
 
 // Create a new shop
 export const createShop = async (req, res) => {
