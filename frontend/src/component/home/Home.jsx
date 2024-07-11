@@ -22,10 +22,16 @@ import Img8 from "../../assets/tv.png";
 import Img9 from "../../assets/dabba.png";
 import Img10 from "../../assets/dasta.png";
 import Img11 from "../../assets/th (12) 1.png"
+<<<<<<< HEAD
 import img12 from "/hero.png"
 import img23 from "/sitem1.png"
 import Footer from "../Footer";
 import img123 from "../../assets/pen.png"
+=======
+// import img12 from "../../assets/"
+import img23 from "../../assets/Star 1.png"
+import Footer from "../Footer/Footer";
+>>>>>>> 33950b69766c65d4b47a40825588b3582d3bdaa1
 // import background from "./Background.png"
 
 
