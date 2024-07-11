@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Home.css";
 // import "./Footer.css";
 
-import ProductCard from "../productCard/ProductCard";
+import ProductList from "../productCard/ProductList";
 import CartImg from "../../assets/Vector (2).png";
 import Carousel from "../container/Carousel";
 import Logo from "../../assets/logo_web.png";
@@ -25,6 +25,7 @@ import Img11 from "../../assets/th (12) 1.png"
 import img12 from "/hero.png"
 import img23 from "/sitem1.png"
 import Footer from "../Footer";
+import img123 from "../../assets/pen.png"
 // import background from "./Background.png"
 
 
@@ -137,167 +138,10 @@ const Home = () => {
         </div>
         {/* Repeat end */}
       </div>
-      <div className="overall flex flex-col items-center justify-start h-screen bg-cover bg-center p-10 container mx-auto overflow-x-scroll hide-scrollbar">
-      <h1 className="text-3xl font-bold mb-5">Popular Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-        <ProductCard
-          imgSrc="./Background.png" // Adjust the path as per your file structure
-          altText="Sunfeast Dark Fantasy Choco Fills"
-          name="Sunfeast Dark Fantasy Choco Fills"
-          description="Original Filled Cookies with Choco"
-          weight="75 g"
-          price="₹38"
-          originalPrice="₹40"
-          discount={true}
-          discountLabel="5% Off"
-        />
-        <ProductCard
-          imgSrc="path/to/nissin.jpg" // Adjust the path as per your file structure
-          altText="MAGGI 2-Minute Instant Masala Noodles"
-          name="MAGGI 2- Minute Instant Masala Noodles"
-          description=""
-          weight="140g"
-          price="₹28"
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc="path/to/cadbury.jpg" // Adjust the path as per your file structure
-          altText="Cadbury Dairy Milk Chocolate Bar"
-          name="Cadbury Dairy Milk Chocolate Bar"
-          description=""
-          weight="23g"
-          price="₹20"
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc="path/to/eastern.jpg" // Adjust the path as per your file structure
-          altText="Eastern Kashmiri Chilli"
-          name="Eastern Kashmiri Chilli"
-          description=""
-          weight="100 g"
-          price="₹77"
-          originalPrice="₹110"
-          discount={true}
-          discountLabel="30% Off"
-        />
-        <ProductCard
-          imgSrc="path/to/pristine.jpg" // Adjust the path as per your file structure
-          altText="Prolyte ORS Liquid - Orange Flavour"
-          name="Prolyte ORS Liquid - Orange Flavour"
-          description=""
-          weight="200 ml"
-          price="₹31.5"
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc="path/to/dairyday.jpg" // Adjust the path as per your file structure
-          altText="Dairy Day Choco Bar"
-          name="Dairy Day Choco Bar"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={true}
-          discountLabel="1% Off"
+     
+<ProductList></ProductList>
 
-          
-        />
-        <ProductCard
-          imgSrc="path/to/thumbsup.jpg" // Adjust the path as per your file structure
-          altText="Thumb Up Soft Drink"
-          name="Thumb Up Soft Drink"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc="path/to/lotte.jpg" // Adjust the path as per your file structure
-          altText="Lotte Choco Pie"
-          name="Lotte Choco Pie Chocolate Cake"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc="path/to/bingo.jpg" // Adjust the path as per your file structure
-          altText="Bingo! Chilli Sprinkled Potato Chips"
-          name="Bingo! Chilli Sprinkled Potato Chips"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc={img23} // img23 import should be correctly specified
-          altText="Dabur Cold Pressed Mustard Oil"
-          name="Dabur Cold Pressed Mustard Oil"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc={img23} // img23 import should be correctly specified
-          altText="Dabur Cold Pressed Mustard Oil"
-          name="Dabur Cold Pressed Mustard Oil"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={false}
-        />
-        <ProductCard
-          imgSrc={img23} // img23 import should be correctly specified
-          altText="Dabur Cold Pressed Mustard Oil"
-          name="Dabur Cold Pressed Mustard Oil"
-          description=""
-          weight=""
-          price=""
-          originalPrice=""
-          discount={false}
-        />
-      </div>
-    </div>
-
-
-      {/* <footer className="">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3>About</h3>
-            <p>  
-              मेरी खेती मेरी पहचान
-            </p>
-          </div>
-          <div className="footer-section">
-            <h3>Policy</h3>
-            <ul>
-              <li>
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="#">Terms of Service</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h3>Reach Us</h3>
-            <div className="social-media">
-              <FaFacebook />
-              <FaTwitter />
-              <FaInstagram />
-            </div>
-          </div>
-        </div>
-      </footer> */}
+    
 
 
      <Footer></Footer>

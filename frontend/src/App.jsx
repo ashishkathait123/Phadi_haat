@@ -5,7 +5,7 @@ import Login from './component/login/Login';
 import Register from './component/login/Register';
 import Profile from './component/profile/Profile';
 import Item from './component/shop/Item';
-// import Shop from './component/shop/Shop';
+import Shop from './component/shop/Shop';
 import ItemForm from './component/insert/ItemForm';
 import ShopForm from './component/insert/ShopForm';
 import About from './component/about/About';
@@ -14,7 +14,7 @@ import ProductPage from "./shop_1/ProductPage";
 import Seler from './seller/Seler';
 import ProductCard from './component/productCard/ProductCard';
 import ItemCard from './component/shop/ItemCard';
-
+import ProductList from './component/productCard/ProductList';
 function App() {
  
 
@@ -34,7 +34,7 @@ function App() {
         <Route path='/about' element= {<About />} />    
         <Route path='/product' element= {<ProductPage />} /> 
         <Route path="/" element={<App />} />
-        <Route path="/shop" element={<Seler />} />
+        <Route path="/shop" element={<Shop />} />
           
       </Routes>
       </BrowserRouter>

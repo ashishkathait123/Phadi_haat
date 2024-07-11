@@ -7,22 +7,17 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-const { promisify } = require('util');
-
-const User = require('./model/User');
-const Shop = require('./model/Shop');
-const Item = require('./model/Item');
+const User = require('./model/User'); // Adjust the path based on your project structure
+const Shop = require('./model/Shop'); // Adjust the path based on your project structure
+const Item = require('./model/Item'); // Adjust the path based on your project structure
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error(err));
+mongoose.connect(process.env.MONGODB_URI)
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error(err));
 
 // Middleware
 app.use(express.json());
@@ -71,6 +66,8 @@ const verifyToken = (req, res, next) => {
 };
 
 // Routes
+
+// Register a new user
 app.post('/register', async (req, res) => {
     try {
         const { name, email, password, phoneNumber, type } = req.body;
@@ -89,6 +86,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// Login route
 app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -106,6 +104,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
+// Get user data (protected route)
 app.get('/data', verifyToken, async (req, res) => {
     try {
         const user = await User.findById(req.userId);
@@ -121,22 +120,32 @@ app.get('/data', verifyToken, async (req, res) => {
     }
 });
 
-app.post('/shop', upload.single('shopImage'), async (req, res) => {
+// Create a new shop (with image upload)
+app.post('/shop', verifyToken, upload.single('shopImage'), async (req, res) => {
     try {
-        const { shopName, shopkeeperName, address } = req.body;
-        const shopId = generateShopId();
-        const shopImagePath = req.file.path;
-
-        const newShop = new Shop({ shopName, shopkeeperName, shopId, address, img_path: shopImagePath });
-        await newShop.save();
-        res.status(201).json({ message: 'Shop created successfully', shop: newShop });
+      const { shopName, shopkeeperName, address } = req.body;
+      console.log('Request body:', req.body);
+      console.log('Uploaded file:', req.file);
+  
+      if (!req.file) {
+        return res.status(400).json({ message: 'Image upload failed' });
+      }
+  
+      const shopId = generateShopId();
+      const shopImagePath = req.file.path;
+  
+      const newShop = new Shop({ shopName, shopkeeperName, address, shopId, img_path: shopImagePath });
+      await newShop.save();
+      res.status(201).json({ message: 'Shop created successfully', shop: newShop });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
+      console.error('Error creating shop:', error);
+      res.status(500).json({ message: 'Server error', error });
     }
-});
+  });
+  
 
-app.post('/item', upload.single('itemImage'), async (req, res) => {
+// Create a new item (with image upload)
+app.post('/item', verifyToken, upload.single('itemImage'), async (req, res) => {
     try {
         const { shopId, itemName, itemType, rate, brand, description } = req.body;
         const itemImagePath = req.file.path;
@@ -150,24 +159,29 @@ app.post('/item', upload.single('itemImage'), async (req, res) => {
     }
 });
 
+// Get all items
 app.get('/allItems', async (req, res) => {
     try {
         const items = await Item.find();
         res.json(items);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: 'Server error' });
     }
 });
 
-app.get('/allshops', async (req, res) => {
+// Get all shops
+app.get('/allShops', async (req, res) => {
     try {
         const shops = await Shop.find();
         res.json(shops);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ message: 'Server error' });
     }
 });
 
+// Serve uploaded images
 app.get('/uploads/:filename', (req, res) => {
     const { filename } = req.params;
     const filePath = path.join(__dirname, 'uploads', filename);
@@ -199,7 +213,7 @@ app.get('/uploads/:filename', (req, res) => {
     }
 });
 
-// Wishlist routes
+// Wishlist routes - example routes, adjust as per your application needs
 let wishlist = [
     { id: 1, name: 'Product 1', price: '$20', rating: 4.5 },
     { id: 2, name: 'Product 2', price: '$25', rating: 4.2 },
@@ -222,6 +236,7 @@ app.delete('/wishlist/:id', (req, res) => {
     res.json({ message: 'Item deleted' });
 });
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

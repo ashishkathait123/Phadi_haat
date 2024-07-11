@@ -83,7 +83,7 @@ function Seler() {
               type="text"
               placeholder="Search..."
               className="w-full px-4 py-2 text-gray-700 rounded-l-full focus:outline-none"
-              placeholder="Search..."
+              
             />
             <button
               type="submit"

@@ -62,7 +62,7 @@ const Navbar = () => {
             <div>
               <Link to={"/shop"}>
                 <FaShop />
-                <span>Shop</span>
+                <span>Add Shop</span>
               </Link>
             </div>
 

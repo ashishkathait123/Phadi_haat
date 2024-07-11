@@ -22,6 +22,15 @@ const ShopForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem('token');
+
+        // Check if the token is available
+        if (!token) {
+            console.error('No token found, please log in.');
+            return;
+        }
+
     const data = new FormData();
     data.append('shopName', formData.shopName);
     data.append('shopkeeperName', formData.shopkeeperName);
@@ -32,6 +41,7 @@ const ShopForm = () => {
       await axios.post('http://localhost:3000/shop', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}` // Include token if required
         },
       });
       setRedirect(true);

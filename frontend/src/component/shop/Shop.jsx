@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import ShopCard from "./ShopCard";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ItemCard from "./Item";
+// import Seler from "../../seller/Seler";
 
 function Shop() {
   const [shops, setShops] = useState([]);
@@ -58,6 +60,14 @@ function Shop() {
             Add Shop
           </Link>
         )}
+        <div className="mt-3"> {user && (
+          <Link to={'/Item'}
+            className="bg-green-300 px-4 py-2 rounded-md"
+          >
+            View Item
+          </Link>
+        )}</div>
+       
       </div>
       <div className="flex flex-wrap justify-center shop1">
         {filteredShops.map((shop) => (
@@ -68,8 +78,11 @@ function Shop() {
             address={shop.address}
             shopId={shop.shopId}
             img_path={shop.img_path}
-          />
+
+            />
+
         ))}
+       
       </div>
     </>
   );
