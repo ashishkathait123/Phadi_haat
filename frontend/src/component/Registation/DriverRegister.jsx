@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import 'tailwindcss/tailwind.css';
+import { useNavigate } from 'react-router-dom';
 
 function DriverRegistration() {
     const [fullName, setFullName] = useState('');
@@ -10,12 +11,13 @@ function DriverRegistration() {
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [vehicleType, setVehicleType] = useState('');
     const [message, setMessage] = useState('');
-    const [redirect, setRedirect] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Submitting form with data:", { fullName, phoneNumber, email, password, vehicleNumber, vehicleType });
         try {
-            const response = await axios.post('http://localhost:3000/register', { 
+            const response = await axios.post('http://localhost:3000/api/v1/driver/register', { 
                 fullName, 
                 phoneNumber, 
                 email, 
@@ -23,26 +25,27 @@ function DriverRegistration() {
                 vehicleNumber, 
                 vehicleType 
             });
+            console.log("Response from server:", response.data);
             setMessage(response.data.message);
-            setRedirect(true);
+            const driverId = response.data.data._id;
+            console.log("Navigating to /driver-profile/" + driverId);
+            navigate(`/driver-profile/${driverId}`); // Redirect to DriverProfile with the driver's ID
         } catch (error) {
-            setMessage(error.response.data.message);
+            console.error("Error during registration:", error);
+            setMessage(error.response?.data?.message || "Registration failed");
         }
     };
-
-    if (redirect) {
-        // Handle redirection logic here
-    }
 
     return (
         <div className="bg-custom flex justify-center items-center min-h-screen">
             <div className="bg-white shadow-lg rounded-lg overflow-hidden w-11/12 md:w-3/4 lg:w-2/3 flex">
                 <div className="w-1/3 p-8 flex flex-col items-center">
                     <img className="w-32 mb-4" src="asset/pahadi haat logo 2.svg" alt="Pahadi Haat Logo" />
-                    <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-4">
+                    {/* Commenting out profile picture upload for now */}
+                    {/* <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-4">
                         <span className="text-gray-500">Add Photo</span>
                     </div>
-                    <button className="bg-custom-button text-white py-2 px-4 rounded">Add Photo</button>
+                    <button className="bg-custom-button text-white py-2 px-4 rounded">Add Photo</button> */}
                 </div>
                 <div className="w-2/3 p-8">
                     <h2 className="text-2xl font-semibold text-gray-700 mb-6">Driver Registration</h2>
