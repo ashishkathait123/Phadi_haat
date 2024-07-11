@@ -3,7 +3,7 @@ import axios from 'axios';
 import 'tailwindcss/tailwind.css';
 import { useNavigate } from 'react-router-dom';
 
-function DriverRegistration() {
+function DriverRegister() {
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -28,6 +28,7 @@ function DriverRegistration() {
             console.log("Response from server:", response.data);
             setMessage(response.data.message);
             const driverId = response.data.data._id;
+            localStorage.setItem('isDriverRegistered', 'true'); // Store flag in local storage
             console.log("Navigating to /driver-profile/" + driverId);
             navigate(`/driver-profile/${driverId}`); // Redirect to DriverProfile with the driver's ID
         } catch (error) {
@@ -142,4 +143,4 @@ function DriverRegistration() {
     );
 }
 
-export default DriverRegistration;
+export default DriverRegister;

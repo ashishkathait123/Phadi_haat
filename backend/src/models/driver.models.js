@@ -19,7 +19,8 @@ const driverSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     vehicleNumber: {
         type: String,
@@ -33,7 +34,7 @@ const driverSchema = new mongoose.Schema({
     },
     profileImage: {
         type: String,
-        default: "", // Provide a default value
+        required: true,
         trim: true
     }
 }, {

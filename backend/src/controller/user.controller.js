@@ -1,6 +1,7 @@
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.models.js";
+import { Driver } from "../models/driver.models.js"; // Import Driver model
 import { ApiResponse } from "../utils/ApiResponse.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -26,7 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
     phoneNumber,
     type,
-    isFirstTime: true // Set first-time login flag
+    isRegistered: false // Set isRegistered to false during registration
   });
 
   const createdUser = await User.findById(user._id).select("-password");
@@ -61,20 +62,15 @@ const loginUser = asyncHandler(async (req, res) => {
     expiresIn: '1h',
   });
 
-  // Include isFirstTime flag in the response
-  const responseData = {
-    token,
-    type: user.type,
-    isFirstTime: user.isFirstTime
-  };
-
-  // Reset the isFirstTime flag after the first login
-  if (user.isFirstTime) {
-    user.isFirstTime = false;
-    await user.save();
+  let driverId = null;
+  if (user.type === 'taxi driver') {
+    const driver = await Driver.findOne({ email: user.email });
+    if (driver) {
+      driverId = driver._id;
+    }
   }
 
-  return res.status(200).json(new ApiResponse(200, responseData, "Login successful"));
+  return res.status(200).json(new ApiResponse(200, { token, type: user.type, driverId, isRegistered: user.isRegistered }, "Login successful"));
 });
 
 export { registerUser, loginUser };

@@ -34,7 +34,7 @@ function App() {
           <Route path='/product' element={<ProductPage />} />
           <Route path='/registration/Seller' element={<SellerRegister />} />
           <Route path='/registration/Driver' element={<DriverRegister />} />
-          <Route path='/driver-profile/:id' element={<DriverProfile />} /> {/* Ensure this route is correct */}
+          <Route path='/driver-profile/:id' element={<DriverProfile />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -9,16 +9,16 @@ const DriverProfile = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log("Fetching driver profile for ID:", driverId);
         const fetchDriverDetails = async () => {
             try {
+                console.log('Fetching driver profile for ID:', driverId); // Add logging
                 const response = await axios.get(`http://localhost:3000/api/v1/driver/${driverId}`);
-                console.log("Driver profile fetched successfully:", response.data);
+                console.log('Driver profile fetched successfully:', response.data.data); // Add logging
                 setDriverDetails(response.data.data);
                 setLoading(false);
             } catch (err) {
-                console.error("Error fetching driver profile:", err);
-                setError(err.response?.data?.message || "Failed to fetch driver profile");
+                console.error('Error fetching driver profile:', err); // Add logging
+                setError(err.message);
                 setLoading(false);
             }
         };
@@ -26,16 +26,8 @@ const DriverProfile = () => {
         fetchDriverDetails();
     }, [driverId]);
 
-    if (loading) {
-        console.log("Loading driver profile...");
-        return <p>Loading...</p>;
-    }
-    if (error) {
-        console.log("Error loading driver profile:", error);
-        return <p>Error: {error}</p>;
-    }
-
-    console.log("Driver profile loaded:", driverDetails);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     const { name, contact, email, vehicleNumber, vehicleType, profileImage } = driverDetails;
 

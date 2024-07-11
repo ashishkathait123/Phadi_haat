@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-
-function Register() {
+function SellerRegister() {
     const [fullName, setFullName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -11,6 +11,7 @@ function Register() {
     const [shopAddress, setShopAddress] = useState('');
     const [message, setMessage] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,6 +25,7 @@ function Register() {
                 shopAddress 
             });
             setMessage(response.data.message);
+            localStorage.setItem('isSellerRegistered', 'true'); // Store flag in local storage
             setRedirect(true);
         } catch (error) {
             setMessage(error.response.data.message);
@@ -32,6 +34,7 @@ function Register() {
 
     if (redirect) {
         // Handle redirection logic here
+        navigate('/seller-profile'); // Redirect to SellerProfile component
     }
 
     return (
@@ -139,4 +142,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default SellerRegister;

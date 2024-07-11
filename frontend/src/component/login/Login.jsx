@@ -9,7 +9,7 @@ function Login() {
     const [redirect, setRedirect] = useState(false);
     const [loading, setLoading] = useState(false);
     const [userType, setUserType] = useState('');
-    const [isFirstTime, setIsFirstTime] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -18,11 +18,12 @@ function Login() {
         try {
             const response = await axios.post('http://localhost:3000/api/v1/user/login', { email, password });
             setLoading(false);
-            const { data } = response.data;
+            console.log(response); // Log the response to inspect its structure
+            const { data } = response.data; // Destructure the nested data property from the response
             if (data.token && data.type) {
                 localStorage.setItem('token', data.token);
                 setUserType(data.type);
-                setIsFirstTime(data.isFirstTime); // Assuming backend sends this flag
+                setIsRegistered(data.isRegistered);
                 setMessage('Login successful');
                 setRedirect(true);
             } else {
@@ -44,20 +45,21 @@ function Login() {
             if (userType === 'buyer') {
                 navigate('/');
             } else if (userType === 'seller') {
-                if (isFirstTime) {
-                    navigate('/registration/Seller');
+                if (isRegistered === 'true') {
+                    navigate('/Seller'); // Redirect to profile if already registered
                 } else {
-                    navigate('/seller');
+                    navigate('/registration/Seller');
                 }
             } else if (userType === 'taxi driver') {
-                if (isFirstTime) {
-                    navigate('/registration/Driver');
+                if (isRegistered === 'true') {
+                    navigate('/driver-profile/:id'); // Redirect to profile if already registered
                 } else {
-                    navigate('/driver-profile');
+                    navigate('/registration/Driver');
                 }
             }
+            // Add other redirections based on user type if needed
         }
-    }, [redirect, userType, isFirstTime, navigate]);
+    }, [redirect, userType, isRegistered, navigate]);
 
     return (
         <div className="flex justify-center items-center h-screen">

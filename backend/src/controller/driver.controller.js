@@ -5,37 +5,39 @@ import { ApiError } from "../utils/ApiError.js";
 
 const getDriverProfile = asyncHandler(async (req, res) => {
     const driverId = req.params.id;
-    console.log("Fetching profile for driver ID:", driverId);
     const driver = await Driver.findById(driverId);
 
     if (!driver) {
         throw new ApiError(404, "Driver not found");
     }
 
-    console.log("Driver profile fetched successfully:", driver);
     return res.status(200).json(new ApiResponse(200, driver, "Driver profile fetched successfully"));
 });
 
 const registerDriver = asyncHandler(async (req, res) => {
     const { fullName, phoneNumber, email, password, vehicleNumber, vehicleType } = req.body;
-    console.log("Registering driver with data:", { fullName, phoneNumber, email, password, vehicleNumber, vehicleType });
 
-    try {
-        const driver = await Driver.create({
-            name: fullName,
-            contact: phoneNumber,
-            email,
-            password,
-            vehicleNumber,
-            vehicleType,
-            profileImage: "" // Set an empty string or default value for profileImage
-        });
-        console.log("Driver registered successfully:", driver);
-        return res.status(201).json(new ApiResponse(201, driver, "Driver registered successfully"));
-    } catch (error) {
-        console.error("Error during driver registration:", error);
-        throw new ApiError(500, "Failed to register driver", [], error.stack);
+    if ([fullName, phoneNumber, email, password, vehicleNumber, vehicleType].some(field => !field)) {
+        throw new ApiError(400, "All fields are required");
     }
+
+    const existingDriver = await Driver.findOne({ email });
+
+    if (existingDriver) {
+        throw new ApiError(409, "Email already exists");
+    }
+
+    const driver = await Driver.create({
+        name: fullName,
+        contact: phoneNumber,
+        email,
+        password,
+        vehicleNumber,
+        vehicleType,
+        profileImage: "default.jpg" // Assuming a default image for now
+    });
+
+    return res.status(201).json(new ApiResponse(201, driver, "Driver registered successfully"));
 });
 
 export { getDriverProfile, registerDriver };

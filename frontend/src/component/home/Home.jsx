@@ -61,7 +61,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="deals_section">
+      {/* <div className="deals_section">
         <p>Exclusive Deals</p>
         <img src={ArrowImg} alt="" />
       </div>
@@ -74,12 +74,12 @@ const Home = () => {
         <div className="img2">
           <img src={Img1} alt="" />
         </div>
-      </div>
+      </div> */}
 
       <div className="categories">
         <span>Categories</span>
       </div>
-     
+      
 
       <div className="card-container">
         {/* Repeat this block for each card */}
