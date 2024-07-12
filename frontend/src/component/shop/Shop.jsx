@@ -11,7 +11,7 @@ function Shop() {
   useEffect(() => {
     const fetchShops = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/allshops");
+        const response = await axios.get("http://localhost:4000/allshops");
         setShops(response.data);
       } catch (error) {
         console.error("Error fetching shops:", error);
@@ -22,7 +22,7 @@ function Shop() {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await axios.get("http://localhost:3000/data", {
+          const response = await axios.get("http://localhost:4000/data", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

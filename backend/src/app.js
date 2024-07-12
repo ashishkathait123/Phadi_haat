@@ -17,11 +17,13 @@ import userRouter from './routes/user.routes.js'
 import productRoutes from './routes/product.routes.js'
 import shopRoutes from './routes/shop.routes.js'
 import driverRoutes from './routes/driver.routes.js'
+import sellerRoutes from './routes/seller.routes.js'
 
 //routes declaration
-app.use("/api/v1/user", userRouter)
+app.use("/api/v1/user", userRouter) // Ensure this is correctly set up
 app.use('/api/v1/', productRoutes);
 app.use("/api/v1/",shopRoutes)
 app.use('/api/v1/driver', driverRoutes);
+app.use('/api/v1/seller', sellerRoutes);
 
 export {app}

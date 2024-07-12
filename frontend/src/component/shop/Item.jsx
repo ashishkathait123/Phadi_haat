@@ -11,7 +11,7 @@ function Item() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/allitems");
+        const response = await axios.get("http://localhost:4000/allitems");
         setItems(response.data);
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -22,7 +22,7 @@ function Item() {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const response = await axios.get("http://localhost:3000/data", {
+          const response = await axios.get("http://localhost:4000/data", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

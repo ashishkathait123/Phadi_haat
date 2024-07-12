@@ -12,7 +12,7 @@ const DriverProfile = () => {
         const fetchDriverDetails = async () => {
             try {
                 console.log('Fetching driver profile for ID:', driverId); // Add logging
-                const response = await axios.get(`http://localhost:3000/api/v1/driver/${driverId}`);
+                const response = await axios.get(`http://localhost:4000/api/v1/driver/${driverId}`);
                 console.log('Driver profile fetched successfully:', response.data.data); // Add logging
                 setDriverDetails(response.data.data);
                 setLoading(false);

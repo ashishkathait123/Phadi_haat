@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { createContext, useReducer } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './component/home/Home';
 import Login from './component/login/Login';
@@ -14,11 +14,16 @@ import ProductPage from "./shop_1/ProductPage";
 import SellerRegister from './component/Registation/SellerRegister';
 import DriverRegister from './component/Registation/DriverRegister';
 import DriverProfile from './component/profile/DriverProfile';
+import SellerProfile from './component/profile/SellerProfile';
+import { initialState, reducer } from './reducer/UseReducer';
+
+export const UserContext = createContext();
 
 function App() {
-  console.log("Rendering App component");
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <>
+    <UserContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -35,10 +40,11 @@ function App() {
           <Route path='/registration/Seller' element={<SellerRegister />} />
           <Route path='/registration/Driver' element={<DriverRegister />} />
           <Route path='/driver-profile/:id' element={<DriverProfile />} />
+          <Route path='/seller-profile/:id' element={<SellerProfile />} />
         </Routes>
       </BrowserRouter>
-    </>
-  )
+    </UserContext.Provider>
+  );
 }
 
-export default App
+export default App;

@@ -1,7 +1,8 @@
 import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.models.js";
-import { Driver } from "../models/driver.models.js"; // Import Driver model
+import { Driver } from "../models/driver.models.js";
+import { Seller } from "../models/seller.models.js"; // Import Seller model
 import { ApiResponse } from "../utils/ApiResponse.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -63,14 +64,20 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 
   let driverId = null;
+  let sellerId = null;
   if (user.type === 'taxi driver') {
     const driver = await Driver.findOne({ email: user.email });
     if (driver) {
       driverId = driver._id;
     }
+  } else if (user.type === 'seller') {
+    const seller = await Seller.findOne({ email: user.email });
+    if (seller) {
+      sellerId = seller._id;
+    }
   }
 
-  return res.status(200).json(new ApiResponse(200, { token, type: user.type, driverId, isRegistered: user.isRegistered }, "Login successful"));
+  return res.status(200).json(new ApiResponse(200, { token, type: user.type, driverId, sellerId, isRegistered: user.isRegistered }, "Login successful"));
 });
 
 export { registerUser, loginUser };

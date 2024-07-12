@@ -1,12 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const driverSchema = new mongoose.Schema({
-    name: {
+const sellerSchema = new mongoose.Schema({
+    fullName: {
         type: String,
         required: true,
         trim: true
     },
-    contact: {
+    phoneNumber: {
         type: String,
         required: true,
         trim: true
@@ -22,29 +22,24 @@ const driverSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    vehicleNumber: {
+    shopName: {
         type: String,
         required: true,
         trim: true
     },
-    vehicleType: {
+    shopAddress: {
         type: String,
         required: true,
         trim: true
-    },
-    is_registered: {
-        type: Boolean,
-        required: true,
     },
     profileImage: {
         type: String,
-        required: true,
-        trim: true
+        default: "default.jpg" // Default image
     }
 }, {
     timestamps: true
 });
 
-const Driver = mongoose.model('Driver', driverSchema);
+const Seller = mongoose.model("Seller", sellerSchema);
 
-export { Driver };
+export { Seller };

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App'; // Import UserContext
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -10,22 +11,36 @@ function Login() {
     const [loading, setLoading] = useState(false);
     const [userType, setUserType] = useState('');
     const [isRegistered, setIsRegistered] = useState(false);
+    const [driverId, setDriverId] = useState('');
+    const [sellerId, setSellerId] = useState('');
     const navigate = useNavigate();
+    const { dispatch } = useContext(UserContext); // Get dispatch from UserContext
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:3000/api/v1/user/login', { email, password });
+            const response = await axios.post('http://localhost:4000/api/v1/user/login', { email, password });
             setLoading(false);
             console.log(response); // Log the response to inspect its structure
             const { data } = response.data; // Destructure the nested data property from the response
             if (data.token && data.type) {
                 localStorage.setItem('token', data.token);
+                console.log("qqqqqqqqqqqq",data.type, data.isRegistered);
                 setUserType(data.type);
                 setIsRegistered(data.isRegistered);
                 setMessage('Login successful');
                 setRedirect(true);
+
+                // Update UserContext
+                dispatch({ type: "USER", payload: { email, userType: data.type } });
+
+                if (data.type === 'taxi driver') {
+                    console.log("data._id",data.driverId, data);
+                    setDriverId(data.driverId);
+                } else if (data.type === 'seller') {
+                    setSellerId(data.sellerId);
+                }
             } else {
                 setMessage('Token or type not found in response');
             }
@@ -41,18 +56,22 @@ function Login() {
     };
 
     useEffect(() => {
+        console.log(userType);
+        console.log("isRegistered",isRegistered);
         if (redirect) {
             if (userType === 'buyer') {
                 navigate('/');
             } else if (userType === 'seller') {
                 if (isRegistered === 'true') {
-                    navigate('/Seller'); // Redirect to profile if already registered
+                    navigate(`/seller-profile/${sellerId}`);
                 } else {
                     navigate('/registration/Seller');
                 }
             } else if (userType === 'taxi driver') {
-                if (isRegistered === 'true') {
-                    navigate('/driver-profile/:id'); // Redirect to profile if already registered
+                console.log(userType, isRegistered);
+                console.log(isRegistered);
+                if (isRegistered) {
+                    navigate(`/driver-profile/${driverId}`); // Redirect to profile if already registered
                 } else {
                     navigate('/registration/Driver');
                 }

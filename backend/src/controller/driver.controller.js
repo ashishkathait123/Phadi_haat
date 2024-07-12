@@ -5,6 +5,7 @@ import { ApiError } from "../utils/ApiError.js";
 
 const getDriverProfile = asyncHandler(async (req, res) => {
     const driverId = req.params.id;
+    console.log("driverId",driverId);
     const driver = await Driver.findById(driverId);
 
     if (!driver) {
@@ -27,6 +28,7 @@ const registerDriver = asyncHandler(async (req, res) => {
         throw new ApiError(409, "Email already exists");
     }
 
+    // TODO: Make it update
     const driver = await Driver.create({
         name: fullName,
         contact: phoneNumber,
@@ -34,6 +36,7 @@ const registerDriver = asyncHandler(async (req, res) => {
         password,
         vehicleNumber,
         vehicleType,
+        is_registered: true,
         profileImage: "default.jpg" // Assuming a default image for now
     });
 

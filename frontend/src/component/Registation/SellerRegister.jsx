@@ -16,7 +16,7 @@ function SellerRegister() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/register', { 
+            const response = await axios.post('http://localhost:4000/api/v1/seller/register', { 
                 fullName, 
                 phoneNumber, 
                 email, 
@@ -27,8 +27,9 @@ function SellerRegister() {
             setMessage(response.data.message);
             localStorage.setItem('isSellerRegistered', 'true'); // Store flag in local storage
             setRedirect(true);
+            navigate(`/seller-profile/${response.data.data._id}`); // Navigate to seller profile
         } catch (error) {
-            setMessage(error.response.data.message);
+            setMessage(error.response?.data?.message || 'Registration failed');
         }
     };
 
@@ -43,14 +44,13 @@ function SellerRegister() {
                 <div className="w-1/3 p-8 flex flex-col items-center">
                     <img className="w-32 mb-4" src="asset/pahadi haat logo 2.svg" alt="Pahadi Haat Logo" />
                     <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mb-4">
-                        <span className="text-gray-500">Add Photo</span>
+                        <img className="w-16 h-16" src="path/to/default-profile.png" alt="Default Profile" />
                     </div>
-                    <button className="bg-custom-button text-white py-2 px-4 rounded">Add Photo</button>
                 </div>
                 <div className="w-2/3 p-8">
-                    <h2 className="text-2xl font-semibold text-gray-700 mb-6">Seller Registration</h2>
-                    <form className="space-y-4" onSubmit={handleSubmit}>
-                        <div>
+                    <form className="space-y-6" onSubmit={handleSubmit}>
+                        <h2 className="text-2xl font-semibold text-gray-700">Register as Seller</h2>
+                        <div className="space-y-2">
                             <label className="block text-gray-700" htmlFor="fullName">Full Name</label>
                             <input
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -63,7 +63,7 @@ function SellerRegister() {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label className="block text-gray-700" htmlFor="phoneNumber">Phone Number</label>
                             <input
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -76,7 +76,7 @@ function SellerRegister() {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label className="block text-gray-700" htmlFor="email">Email</label>
                             <input
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -89,7 +89,7 @@ function SellerRegister() {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label className="block text-gray-700" htmlFor="password">Password</label>
                             <input
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -102,7 +102,7 @@ function SellerRegister() {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label className="block text-gray-700" htmlFor="shopName">Shop Name</label>
                             <input
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -115,7 +115,7 @@ function SellerRegister() {
                                 required
                             />
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label className="block text-gray-700" htmlFor="shopAddress">Shop Address</label>
                             <input
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"

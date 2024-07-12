@@ -7,7 +7,7 @@ const ShopCard = ({
   shopId,
   img_path,
 }) => {
-  const imageUrl = `http://localhost:3000/${img_path}`;
+  const imageUrl = `http://localhost:4000/${img_path}`;
   return (
     <div className="flex justify-between w-full gap-5 bg-gradient-to-rp-3 rounded-2xl shadow-lg mb-8">
       <div className="flex gap-5 h-64 capitalize rounded-2xl">
