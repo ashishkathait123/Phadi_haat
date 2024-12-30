@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "BillWizer",
+    "slug": "BillWizer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/Clickprinter.png",
+    "scheme": "BillWizer",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/BillWizer.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.fylfotsoftware.BillWizer"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/BillWizer.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin"
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "12201af0-6cbe-4f77-97bd-aee86bc62bba"
+      }
+    }
+  }
+}
